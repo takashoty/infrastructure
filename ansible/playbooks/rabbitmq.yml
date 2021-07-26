@@ -1,0 +1,7 @@
+---
+- name: Configure RabbitMQ
+  hosts: all
+  become: true
+
+  roles:
+    - rabbitmq
