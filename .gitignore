@@ -133,3 +133,12 @@ dmypy.json
 
 # Exclude test files
 *add_user.yml
+
+
+# Terraform
+.creds/
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+.terraform/

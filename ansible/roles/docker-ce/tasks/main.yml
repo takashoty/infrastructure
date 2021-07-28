@@ -5,12 +5,16 @@
     name: dnf-plugins-core
     state: present
 
-- name: Add repo
-  become: yes
+- name: Add Docker repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+  become: true
+
+- name: test repo
   dnf:
-    enablerepo: 'https://download.docker.com/linux/centos/docker-ce.repo'
+    enablerepo: docker-ce
     state: present
-    update_cache: True
 
 - name: Install docker
   dnf:
