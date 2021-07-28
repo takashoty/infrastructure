@@ -1,0 +1,21 @@
+---
+# tasks file for docker-ce
+- name: Install DNF plugins core
+  dnf:
+    name: dnf-plugins-core
+    state: present
+
+- name: Add repo
+  become: yes
+  dnf:
+    enablerepo: 'https://download.docker.com/linux/centos/docker-ce.repo'
+    state: present
+    update_cache: True
+
+- name: Install docker
+  dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: latest
