@@ -1,9 +1,21 @@
 provider "google" {
-#  credentials = file(".creds/ss-frontend-320708-1ea77fd7289f.json")
   credentials = var.service_account_key_file
+  project     = var.project
+  region      = var.region
+  zone        = var.zone
+}
+
+resource "google_compute_firewall" "firewall-rules" {
   project = var.project
-  region = var.region
-  zone = var.zone
+  name    = "frontend-firewall-rules"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports = ["80", "55000"]
+  }
+
+  target_tags = ["app"]
 }
 
 resource "google_compute_address" "static" {
@@ -11,7 +23,7 @@ resource "google_compute_address" "static" {
 }
 
 resource "google_compute_instance" "vm_instance" {
-  name = "flask-front"
+  name         = "kv-094"
   machine_type = var.machine_type
 
   boot_disk {
@@ -30,4 +42,6 @@ resource "google_compute_instance" "vm_instance" {
   metadata = {
     ssh-keys = "serve:${file(var.public_key_path)}"
   }
+
+  tags = ["app", "frontend-firewall-rules"]
 }
