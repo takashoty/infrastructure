@@ -2,14 +2,18 @@
 Description=Frontend for JSON-filter
 After=docker.service
 Requires=docker.service
+
 [Service]
 TimeoutStartSec=0
 Restart=always
-ExecStartPre=-/usr/bin/docker exec %n stop
+RestartSec=5
+ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull oleksiihead/frontend
-ExecStart=/usr/bin/docker run --rm --name %n \
+ExecStart=/usr/bin/docker run \
+    --rm --name %n \
     -p 55000:5000 \
     oleksiihead/frontend
+
 [Install]
 WantedBy=default.target
