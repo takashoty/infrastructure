@@ -3,7 +3,7 @@
   template:
     src: docker.frontend.service.j2
     dest: /etc/systemd/system/docker.frontend.service
-  notify: reload docker.frontend
+#  notify: reload docker.frontend
 
 - name: Start docker.frontend.service
   systemd:
