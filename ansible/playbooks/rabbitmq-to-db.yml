@@ -1,0 +1,7 @@
+---
+- name: Configure RabbitMQ to DB
+  hosts: all
+  become: true
+
+  roles:
+    - rabbitmq-to-db

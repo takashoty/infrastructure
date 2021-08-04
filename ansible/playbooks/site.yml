@@ -1,7 +1,8 @@
 ---
 - import_playbook: docker-ce.yml
-- import_playbook: db.yml
-- import_playbook: frontend.yml
 - import_playbook: json-filter.yml
 - import_playbook: rabbitmq.yml
+- import_playbook: db.yml
 - import_playbook: rest-api.yml
+- import_playbook: rabbitmq-to-db.yml
+- import_playbook: frontend.yml
