@@ -9,7 +9,7 @@ Restart=always
 RestartSec=5
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStartPre=/usr/bin/docker pull oleksiihead/frontend
+ExecStartPre=/usr/bin/docker pull oleksiihead/frontend:1.6
 ExecStart=/usr/bin/docker run \
     --rm --name %n \
     -p 55000:5000 \
