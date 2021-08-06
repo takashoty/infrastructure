@@ -9,12 +9,12 @@ Restart=always
 RestartSec=5
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStartPre=/usr/bin/docker pull oleksiihead/frontend:1.7
+ExecStartPre=/usr/bin/docker pull oleksiihead/frontend:1.8
 ExecStart=/usr/bin/docker run \
     --rm --name %n \
     -p 80:5000 \
-    oleksiihead/frontend:1.7
-ExecStop=/usr/bin/docker stop -t 10 oleksiihead/frontend:1.7
+    oleksiihead/frontend:1.8
+ExecStop=/usr/bin/docker stop -t 10 oleksiihead/frontend:1.8
 
 [Install]
 WantedBy=multi-user.target
