@@ -1,0 +1,20 @@
+[Unit]
+Description=JsonFilter Service
+After=docker.service docker.rabbitmq.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+RestartSec=10
+ExecStartPre=-/usr/bin/docker kill %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=/usr/bin/docker pull rmkdvps/jsonfilter:1.0
+ExecStart=/usr/bin/docker run \
+    --rm --name %n \
+    -p 5000:5000 \
+    rmkdvps/jsonfilter:1.0
+ExecStop=/usr/bin/docker stop -t 10 rmkdvps/jsonfilter:1.0
+
+[Install]
+WantedBy=multi-user.target
