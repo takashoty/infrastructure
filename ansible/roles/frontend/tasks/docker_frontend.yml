@@ -11,8 +11,3 @@
     name: docker.frontend
     enabled: yes
     daemon_reload: yes
-
-# - name: Enable docker.frontend.service
-#   systemd:
-#     name: docker.frontend
-#     enabled: yes

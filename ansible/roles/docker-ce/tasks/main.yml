@@ -41,7 +41,11 @@
 
 - name: Add user to docker group
   user:
-    name: serve
+    name: "{{ deploy_user }}"
     groups: docker
     append: yes
   become: yes
+
+- name: "Create a docker network"
+  docker_network:
+    name: "{{ docker_network }}"
