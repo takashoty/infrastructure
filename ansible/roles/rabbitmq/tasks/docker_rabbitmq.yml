@@ -1,0 +1,13 @@
+---
+- name: Add unit file for rabbitmq
+  template:
+    src: docker.rabbitmq.service.j2
+    dest: /etc/systemd/system/docker.rabbitmq.service
+#  notify: reload docker.rabbitmq
+
+- name: Start docker.rabbitmq.service
+  systemd:
+    state: started
+    name: docker.rabbitmq
+    enabled: yes
+    daemon_reload: yes
