@@ -1,2 +1,3 @@
 ---
-# tasks file for ansible/roles/rest-api
+# tasks file for ansible/roles/restapi
+- include: docker_restapi.yml
