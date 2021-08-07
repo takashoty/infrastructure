@@ -9,7 +9,7 @@ Restart=always
 RestartSec=10
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStartPre=/usr/bin/docker pull rabbit_to_postgres
+ExecStartPre=/usr/bin/docker pull kimachinskiy/rabbit-to-bd
 ExecStart=/usr/bin/docker run \
     -h rabbit_to_postgres \
     --name rabbit_to_postgres \
@@ -24,7 +24,7 @@ ExecStart=/usr/bin/docker run \
     -e RABBIT_USER=devops \
     -e RABBIT_PW=softserve \
     -e RABBIT_QUEUE=restapi \
-    rabbit_to_postgres
+    kimachinskiy/rabbit-to-bd
 
 [Install]
 WantedBy=default.target
