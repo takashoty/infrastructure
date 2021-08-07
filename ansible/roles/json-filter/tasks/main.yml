@@ -1,2 +1,3 @@
 ---
-# tasks file for ansible/roles/json-filter
+# tasks file for ansible/roles/jsonfilter
+- include: docker_jsonfilter.yml
