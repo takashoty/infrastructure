@@ -9,10 +9,10 @@ Restart=always
 RestartSec=10
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStartPre=/usr/bin/docker pull restapi
+ExecStartPre=/usr/bin/docker pull kimachinskiy/restapi
 ExecStart=/usr/bin/docker run \
     -h restapi \
-    --name restapi \
+    --name %n \
     --net bridge_issue \
     -d -p 5001:5000 \
     -e github='https://github.com/Kv-DevOps-094/rest-api.git' \
@@ -21,7 +21,8 @@ ExecStart=/usr/bin/docker run \
     -e POSTGRES_USER=issueuser \
     -e POSTGRES_PW=Init1234 \
     -e POSTGRES_DB=issuedb \
-    restapi
+    kimachinskiy/restapi
+ExecStop=/usr/bin/docker stop -t 10 %n
 
 [Install]
 WantedBy=default.target

@@ -15,7 +15,7 @@ ExecStart=/usr/bin/docker run \
     -p 5000:5000 \
     --net bridge_issue \
     rmkdvps/jsonfilter:1.0
-ExecStop=/usr/bin/docker stop -t 10 rmkdvps/jsonfilter:1.0
+ExecStop=/usr/bin/docker stop -t 10 %n
 
 [Install]
 WantedBy=multi-user.target

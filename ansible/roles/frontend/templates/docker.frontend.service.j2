@@ -1,6 +1,6 @@
 [Unit]
 Description=Frontend for JSON-filter
-After=docker.service
+After=docker.service docker.restapi.service
 Requires=docker.service
 
 [Service]
@@ -9,12 +9,14 @@ Restart=always
 RestartSec=5
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStartPre=/usr/bin/docker pull oleksiihead/frontend:1.8
+ExecStartPre=/usr/bin/docker pull oleksiihead/frontend:2.2
 ExecStart=/usr/bin/docker run \
     --rm --name %n \
-    -p 80:5000 \
-    oleksiihead/frontend:1.8
-ExecStop=/usr/bin/docker stop -t 10 oleksiihead/frontend:1.8
+    -h frontend \
+    --net bridge_issue \
+    -p 55000:5000 \
+    oleksiihead/frontend:2.2
+ExecStop=/usr/bin/docker stop -t 10 %n
 
 [Install]
 WantedBy=multi-user.target

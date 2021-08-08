@@ -1,4 +1,8 @@
 ---
+#- name:
+#  pause:
+#    seconds: 30
+
 - name: Add unit file for Rabbitmq-to-db
   template:
     src: docker.rabbit_to_postgres.service.j2

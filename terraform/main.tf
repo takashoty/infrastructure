@@ -12,7 +12,7 @@ resource "google_compute_firewall" "firewall-rules" {
 
   allow {
     protocol = "tcp"
-    ports = ["80", "55000", "5000", "5672", "5673", "15672"]
+    ports = ["80", "55000", "5000", "5001", "5671", "5672", "5673", "15672"]
   }
 
   target_tags = ["app"]
