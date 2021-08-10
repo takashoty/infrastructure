@@ -9,9 +9,8 @@ Restart=always
 RestartSec=10
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStartPre=/usr/bin/docker pull bitnami/rabbitmq
 ExecStart=/usr/bin/docker run \
-    --rm --name %n \
+    --name %n \
     -h rabbitmq \
     --net bridge_issue \
     -e RABBITMQ_USERNAME=devops \
@@ -20,7 +19,8 @@ ExecStart=/usr/bin/docker run \
     -p 5671:5671 \
     -p 15672:15672 \
     bitnami/rabbitmq
-ExecStop=/usr/bin/docker stop -t 10 %n
+ExecStop=-/usr/bin/docker stop %n
+ExecStopPost=-/usr/bin/docker rm %n
 
 [Install]
 WantedBy=multi-user.target

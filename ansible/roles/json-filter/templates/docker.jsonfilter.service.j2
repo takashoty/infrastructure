@@ -11,11 +11,12 @@ ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull rmkdvps/jsonfilter:1.0
 ExecStart=/usr/bin/docker run \
-    --rm --name %n \
+    --name %n \
     -p 5000:5000 \
     --net bridge_issue \
     rmkdvps/jsonfilter:1.0
 ExecStop=/usr/bin/docker stop -t 10 %n
+ExecStopPost=-/usr/bin/docker rm %n
 
 [Install]
 WantedBy=multi-user.target

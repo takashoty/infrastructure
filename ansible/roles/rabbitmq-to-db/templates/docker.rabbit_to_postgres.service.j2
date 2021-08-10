@@ -4,17 +4,18 @@ After=docker.service docker.postgres.service docker.rabbitmq.service
 Requires=docker.service
 
 [Service]
+KillMode=none
 TimeoutStartSec=0
 Restart=always
-RestartSec=10
+RestartSec=5
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStartPre=/usr/bin/docker pull kimachinskiy/rabbit-to-bd
+ExecStartPre=/usr/bin/docker pull kimachinskiy/rabbit-to-bd:1.4
 ExecStart=/usr/bin/docker run \
     -h rabbit_to_postgres \
     --name %n \
     --net bridge_issue \
-    -d -e POSTGRES_HOST=postgres \
+    -e POSTGRES_HOST=postgres \
     -e POSTGRES_PORT=5432 \
     -e POSTGRES_USER=issueuser \
     -e POSTGRES_PW=Init1234 \
@@ -24,9 +25,9 @@ ExecStart=/usr/bin/docker run \
     -e RABBIT_USER=devops \
     -e RABBIT_PW=softserve \
     -e RABBIT_QUEUE=restapi \
-    kimachinskiy/rabbit-to-bd
-
-ExecStop=/usr/bin/docker stop -t 10 %n
+    kimachinskiy/rabbit-to-bd:1.4
+ExecStop=-/usr/bin/docker stop %n
+ExecStopPost=-/usr/bin/docker rm %n
 
 [Install]
 WantedBy=default.target

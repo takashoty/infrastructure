@@ -4,17 +4,17 @@ After=docker.service docker.postgres.service
 Requires=docker.service
 
 [Service]
+KillMode=none
 TimeoutStartSec=0
 Restart=always
-RestartSec=10
+RestartSec=5
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStartPre=/usr/bin/docker pull kimachinskiy/restapi
 ExecStart=/usr/bin/docker run \
     -h restapi \
     --name %n \
     --net bridge_issue \
-    -d -p 5001:5000 \
+    -p 5001:5000 \
     -e github='https://github.com/Kv-DevOps-094/rest-api.git' \
     -e POSTGRES_HOST=postgres \
     -e POSTGRES_PORT=5432 \
@@ -22,7 +22,8 @@ ExecStart=/usr/bin/docker run \
     -e POSTGRES_PW=Init1234 \
     -e POSTGRES_DB=issuedb \
     kimachinskiy/restapi
-ExecStop=/usr/bin/docker stop -t 10 %n
+ExecStop=-/usr/bin/docker stop %n
+ExecStop=-/usr/bin/docker rm %n
 
 [Install]
 WantedBy=default.target

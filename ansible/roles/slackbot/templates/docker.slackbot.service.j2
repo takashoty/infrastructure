@@ -11,10 +11,11 @@ ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
 ExecStartPre=/usr/bin/docker pull rmkdvps/slackbot:1.1
 ExecStart=/usr/bin/docker run \
-    --rm --name %n \
+    --name %n \
     --net bridge_issue \
     rmkdvps/slackbot:1.1
-ExecStop=/usr/bin/docker stop -t 10 rmkdvps/slackbot:1.1
+ExecStop=/usr/bin/docker stop rmkdvps/slackbot:1.1
+ExecStop=-/usr/bin/docker rm %n
 
 [Install]
 WantedBy=multi-user.target
