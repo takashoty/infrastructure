@@ -14,7 +14,7 @@ ExecStart=/usr/bin/docker run \
     --name %n \
     --net bridge_issue \
     rmkdvps/slackbot:1.1
-ExecStop=/usr/bin/docker stop rmkdvps/slackbot:1.1
+ExecStop=-/usr/bin/docker stop %n
 ExecStopPost=-/usr/bin/docker rm %n
 
 [Install]
