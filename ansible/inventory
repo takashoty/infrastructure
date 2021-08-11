@@ -4,5 +4,5 @@
 # local VM
 #appserver ansible_host=192.168.91.48
 # GCP host IP
-# appserver ansible_host=34.89.174.136
-appserver ansible_host=34.107.110.146
+appserver ansible_host=34.89.174.136
+# appserver ansible_host=34.107.110.146
