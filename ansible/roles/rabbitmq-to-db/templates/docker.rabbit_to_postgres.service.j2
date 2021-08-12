@@ -10,7 +10,6 @@ Restart=always
 RestartSec=5
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStartPre=/usr/bin/docker pull kimachinskiy/rabbit-to-bd:1.5
 ExecStart=/usr/bin/docker run \
     -h rabbit_to_postgres \
     --name %n \
@@ -25,7 +24,7 @@ ExecStart=/usr/bin/docker run \
     -e RABBIT_USER=devops \
     -e RABBIT_PW=softserve \
     -e RABBIT_QUEUE=restapi \
-    kimachinskiy/rabbit-to-bd:1.5
+    kimachinskiy/rabbit-to-bd:1.6
 ExecStop=-/usr/bin/docker stop %n
 ExecStopPost=-/usr/bin/docker rm %n
 
