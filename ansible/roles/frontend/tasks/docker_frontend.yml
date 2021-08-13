@@ -1,8 +1,4 @@
 ---
-#- name:
-#  pause:
-#    seconds: 30
-
 - name: Add unit file for Frontend
   template:
     src: docker.frontend.service.j2
