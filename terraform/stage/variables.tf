@@ -16,3 +16,9 @@ variable project {
 variable service_account_key_file {
   description = "Path to .json key"
 }
+variable GITHUB_USER {
+  description = "GitHub user"
+}
+variable GITHUB_TOKEN {
+  description = "GitHub token"
+}
