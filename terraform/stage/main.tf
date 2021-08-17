@@ -6,5 +6,5 @@ provider "google" {
 }
 
 module "compute_instance" {
-  source = "../modules/"
+  source = "../modules/gke"
 }
