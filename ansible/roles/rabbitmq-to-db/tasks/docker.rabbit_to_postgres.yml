@@ -1,0 +1,22 @@
+---
+#- name:
+#  pause:
+#    seconds: 30
+
+- name: Add unit file for Rabbitmq-to-db
+  template:
+    src: docker.rabbit_to_postgres.service.j2
+    dest: /etc/systemd/system/docker.rabbit_to_postgres.service
+#  notify: reload docker.rabbit_to_postgres
+
+- name: Start docker.rabbit_to_postgres.service
+  systemd:
+    state: started
+    name: docker.rabbit_to_postgres
+    enabled: yes
+    daemon_reload: yes
+
+# - name: Enable docker.rabbit_to_postgres.service
+#   systemd:
+#     name: docker.rabbit_to_postgres
+#     enabled: yes

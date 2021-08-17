@@ -1,0 +1,29 @@
+[Unit]
+Description=PostgreSQL Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+KillMode=none
+TimeoutStartSec=0
+Restart=always
+RestartSec=5
+ExecStartPre=-/usr/bin/docker kill %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=/usr/bin/docker run \
+    -h postgres \
+    --name %n \
+    --net bridge_issue \
+    -e POSTGRES_PASSWORD=Init1234 \
+    -e POSTGRES_HOST=postgres \
+    -e POSTGRES_USER=issueuser \
+    -e POSTGRES_PW=Init1234 \
+    -e USERMAP_UID=999 \
+    -e USERMAP_GID=999 \
+    -v /home/projectIssues/docker/volumes/postgres:/var/lib/postgresql/data \
+    docker.io/library/postgres:latest
+ExecStop=-/usr/bin/docker stop %n
+ExecStopPost=-/usr/bin/docker rm %n
+
+[Install]
+WantedBy=default.target
