@@ -1,0 +1,51 @@
+---
+# tasks file for docker-ce
+- name: Install DNF plugins core
+  dnf:
+    name: dnf-plugins-core
+    state: present
+
+- name: Add Docker repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+  become: true
+
+- name: Enable Docker repo
+  dnf:
+    enablerepo: docker-ce
+    state: present
+
+- name: Install docker-ce and docker module for python
+  dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - python3-pip
+    state: latest
+
+- name: Enable docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Install Docker Module for Python
+  pip:
+    name:
+      - docker
+      - docker-compose
+    executable: pip3
+
+- name: Add user to docker group
+  user:
+    name: "{{ deploy_user }}"
+    groups: docker
+    append: yes
+  become: yes
+
+- name: "Create a docker network"
+  docker_network:
+    name: "{{ docker_network }}"

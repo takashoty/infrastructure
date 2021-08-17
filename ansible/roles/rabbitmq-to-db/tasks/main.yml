@@ -1,0 +1,3 @@
+---
+# tasks file for rabbit_to_postgres
+- include: docker.rabbit_to_postgres.yml

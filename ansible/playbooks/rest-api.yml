@@ -1,0 +1,7 @@
+---
+- name: Configure Rest-API
+  hosts: all
+  become: true
+
+  roles:
+    - rest-api

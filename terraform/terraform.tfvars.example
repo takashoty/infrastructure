@@ -1,0 +1,8 @@
+region = "insert_region"
+zone = "insert_zone"
+machine_type = "insert_machine_type"
+public_key_path = "/path/to/public/ssh/key"
+project = ""
+service_account_key_file = "/path/to/service/account/key"
+GITHUB_USER = ""
+GITHUB_TOKEN = ""
