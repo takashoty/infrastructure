@@ -5,7 +5,7 @@ resource "google_compute_firewall" "firewall-rules" {
 
   allow {
     protocol = "tcp"
-    ports = ["80", "55000", "5000", "5001", "5671", "5672", "5673", "15672"]
+    ports    = ["80", "5000", "5001", "5671", "5672", "5673", "15672"]
   }
 
   target_tags = ["app"]
@@ -16,17 +16,18 @@ resource "google_compute_address" "static" {
 }
 
 resource "google_compute_instance" "vm_instance" {
-  name         = "kv-094"
+  count        = var.instance_count
+  name         = "kv094-instance-${count.index}"
   machine_type = var.machine_type
 
   boot_disk {
     initialize_params {
-      image = "centos-cloud/centos-8"
+      image = var.instance_disk_image
     }
   }
 
   network_interface {
-    network = "default"
+    network = var.network_name
     access_config {
       nat_ip = google_compute_address.static.address
     }
