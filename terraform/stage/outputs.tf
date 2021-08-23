@@ -1,3 +1,3 @@
-output "external_ip_address_app" {
-  value = google_compute_address.static.address
+output "external_ip_address_instance" {
+  value = module.compute_instance.external_ip_address_instance
 }
