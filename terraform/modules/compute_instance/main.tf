@@ -14,7 +14,7 @@ resource "google_compute_instance" "vm_instance" {
   }
 
   network_interface {
-    network = var.network_name
+    network = var.vpc_name
     access_config {
       nat_ip = google_compute_address.static.address
     }
