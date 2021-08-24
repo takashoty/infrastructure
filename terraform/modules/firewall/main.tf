@@ -1,7 +1,7 @@
 resource "google_compute_firewall" "firewall-rules" {
   project = var.project
   name    = "frontend-firewall-rules"
-  network = var.network_name
+  network = var.vpc_name
 
   allow {
     protocol = "tcp"
