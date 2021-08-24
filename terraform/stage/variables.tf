@@ -1,24 +1,24 @@
-variable region {
+variable "region" {
   description = "Region"
 }
 
-variable zone {
+variable "zone" {
   description = "Zone"
 }
 
-variable machine_type {
+variable "machine_type" {
   description = "Machine type for instance"
 }
 
-variable public_key_path {
+variable "public_key_path" {
   description = "Path to the public key used for ssh access"
 }
 
-variable project {
+variable "project" {
   description = "Project name"
 }
 
-variable service_account_key_file {
+variable "service_account_key_file" {
   description = "Path to .json key"
 }
 
@@ -62,4 +62,12 @@ variable "versioning" {
 
 variable "location" {
   description = "Location"
+}
+
+variable "sql_disk_size" {
+  description = ""
+}
+
+variable "sql_disk_type" {
+  description = ""
 }

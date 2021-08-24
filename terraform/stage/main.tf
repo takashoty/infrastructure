@@ -6,32 +6,35 @@ provider "google" {
 }
 
 module "vpc" {
-  source       = "../modules/vpc"
-  project_id   = var.project_id
+  source     = "../modules/vpc"
+  project_id = var.project_id
 }
 
 module "subnet" {
-  source = "../modules/subnet"
+  source   = "../modules/subnet"
   vpc_name = module.vpc.vpc_name
-  region = var.region
+  region   = var.region
 }
 
 module "firewall" {
-  source       = "../modules/firewall"
+  source   = "../modules/firewall"
   vpc_name = module.vpc.vpc_name
+}
+
+module "cloudsql" {
+  source        = "../modules/cloudsql"
+  region        = var.region
+  sql_disk_size = var.sql_disk_size
+  sql_disk_type = var.sql_disk_type
 }
 
 module "gke" {
-  source = "../modules/gke"
-  vpc_name = module.vpc.vpc_name
+  source      = "../modules/gke"
+  vpc_name    = module.vpc.vpc_name
   subnet_name = module.subnet.subnet_name
-  project = var.project
-  location = var.location
+  project     = var.project
+  location    = var.location
 }
-
-//module "cloudsql" {
-//  source = "../modules/cloudsql"
-//}
 
 //module "compute_instance" {
 //  source                   = "../modules/compute_instance"
