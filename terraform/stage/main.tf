@@ -8,13 +8,30 @@ provider "google" {
 module "vpc" {
   source       = "../modules/vpc"
   project_id   = var.project_id
-  network_name = var.network_name
+}
+
+module "subnet" {
+  source = "../modules/subnet"
+  vpc_name = module.vpc.vpc_name
+  region = var.region
 }
 
 module "firewall" {
-  source = "../modules/firewall"
-  network_name = var.network_name
+  source       = "../modules/firewall"
+  vpc_name = module.vpc.vpc_name
 }
+
+module "gke" {
+  source = "../modules/gke"
+  vpc_name = module.vpc.vpc_name
+  subnet_name = module.subnet.subnet_name
+  project = var.project
+  location = var.location
+}
+
+//module "cloudsql" {
+//  source = "../modules/cloudsql"
+//}
 
 //module "compute_instance" {
 //  source                   = "../modules/compute_instance"

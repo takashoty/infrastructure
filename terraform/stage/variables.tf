@@ -33,10 +33,10 @@ variable service_account_key_file {
 variable "project_id" {
   description = "The ID of the project where the routes will be created"
 }
-
-variable "network_name" {
-  description = "The name of the network where routes will be created"
-}
+//
+//variable "vpc_name" {
+//  description = "The name of the VPC where routes will be created"
+//}
 
 variable "instance_name" {
   description = "The name of the instance"
@@ -54,4 +54,12 @@ variable "versioning" {
   description = "While set to true, versioning is fully enabled for this bucket."
   type        = bool
   default     = true
+}
+//
+//variable "gke_cluster_name" {
+//  description = ""
+//}
+
+variable "location" {
+  description = "Location"
 }
