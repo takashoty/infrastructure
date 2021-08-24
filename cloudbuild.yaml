@@ -1,0 +1,16 @@
+---
+steps:
+- name: hashicorp/terraform
+  dir: terraform/stage
+  args:
+  - init
+- name: hashicorp/terraform
+  dir: terraform/stage
+  args:
+  - plan
+  - -out=terraform.tfplan
+- name: gcr.io/DevOps-094Kv/terraform-validator
+  dir: terraform/stage
+  args:
+    - apply
+    - --auto-approve
