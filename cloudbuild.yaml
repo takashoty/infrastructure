@@ -16,8 +16,9 @@
 #    - --auto-approve
 steps:
 - name: 'hashicorp/terraform'
-  dir: terraform/stage
   args: ['init']
+  dir: 'terraform/stage'
 - name: 'hashicorp/terraform'
-  dir: terraform/stage
-  args: ['apply','-var=project_id=project_id','--auto-approve']
+  dir: 'terraform/stage'
+#  args: ['apply','-var=project_id=$project_id','-var-file=terraform.tfvars','--auto-approve']
+  args: ['apply','-var=project_id=main-basis-321206','--auto-approve']

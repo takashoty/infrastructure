@@ -1,9 +1,11 @@
 variable "region" {
+  type = string
   description = "Region"
 }
 
 variable "zone" {
   description = "Zone"
+  default = "europe-west3-c"
 }
 
 variable "machine_type" {
