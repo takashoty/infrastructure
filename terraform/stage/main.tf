@@ -1,6 +1,6 @@
 provider "google" {
   credentials = var.service_account_key_file
-  project     = var.project
+  project     = var.project_id
   region      = var.region
   zone        = var.zone
 }
@@ -36,17 +36,17 @@ module "gke" {
   location    = var.location
 }
 
-module "compute_instance" {
-  source                   = "../modules/compute_instance"
-  vpc_name                 = module.vpc.vpc_name
-  region                   = var.region
-  zone                     = var.zone
-  instance_disk_image      = var.instance_disk_image
-  instance_name            = var.instance_name
-  instance_count           = var.instance_count
-  machine_type             = var.machine_type
-  project                  = var.project
-  project_id               = var.project_id
-  public_key_path          = var.public_key_path
-  service_account_key_file = var.service_account_key_file
-}
+//module "compute_instance" {
+//  source                   = "../modules/compute_instance"
+//  vpc_name                 = module.vpc.vpc_name
+//  region                   = var.region
+//  zone                     = var.zone
+//  instance_disk_image      = var.instance_disk_image
+//  instance_name            = var.instance_name
+//  instance_count           = var.instance_count
+//  machine_type             = var.machine_type
+//  project                  = var.project
+//  project_id               = var.project_id
+//  public_key_path          = var.public_key_path
+//  service_account_key_file = var.service_account_key_file
+//}

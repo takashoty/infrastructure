@@ -1,16 +1,23 @@
 ---
+#steps:
+#- name: hashicorp/terraform
+#  dir: terraform/stage
+#  args:
+#  - init
+#- name: hashicorp/terraform
+#  dir: terraform/stage
+#  args:
+#  - plan
+#  - -out=terraform.tfplan
+#- name: hashicorp/terraform
+#  dir: terraform/stage
+#  args:
+#    - apply
+#    - --auto-approve
 steps:
-- name: hashicorp/terraform
+- name: 'hashicorp/terraform'
   dir: terraform/stage
-  args:
-  - init
-- name: hashicorp/terraform
+  args: ['init']
+- name: 'hashicorp/terraform'
   dir: terraform/stage
-  args:
-  - plan
-  - -out=terraform.tfplan
-- name: hashicorp/terraform
-  dir: terraform/stage
-  args:
-    - apply
-    - --auto-approve
+  args: ['apply','-var=project_id=project_id','--auto-approve']
