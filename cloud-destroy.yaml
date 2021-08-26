@@ -1,0 +1,8 @@
+steps:
+- name: 'hashicorp/terraform'
+  args: ['init']
+  dir: 'terraform/stage'
+- name: 'hashicorp/terraform'
+  dir: 'terraform/stage'
+  args: ['destroy','-var=project_id=main-basis-321206','--auto-approve']
+  timeout: 900s
