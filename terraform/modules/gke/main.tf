@@ -23,6 +23,12 @@ resource "google_container_cluster" "gke_cluster" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
+  master_auth {
+    # Setting an empty username and password explicitly disables basic auth
+    username = ""
+    password = ""
+  }
+
   network    = var.vpc_name
   subnetwork = var.subnet_name
 }
