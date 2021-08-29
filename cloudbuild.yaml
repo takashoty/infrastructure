@@ -21,4 +21,4 @@ steps:
 - name: 'hashicorp/terraform'
   dir: 'terraform/stage'
   args: ['apply','-var=project_id=main-basis-321206','--auto-approve']
-  timeout: 900s
+timeout: 1200s
