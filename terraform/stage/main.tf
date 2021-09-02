@@ -1,5 +1,5 @@
 provider "google" {
-#  credentials = var.service_account_key_file
+  credentials = var.service_account_key_file
   project     = var.project_id
   region      = var.region
   zone        = var.zone
@@ -50,3 +50,7 @@ module "gke" {
 //  public_key_path          = var.public_key_path
 //  service_account_key_file = var.service_account_key_file
 //}
+
+module "jenkins" {
+  source = "../modules/helm_charts_jenkins"
+}
