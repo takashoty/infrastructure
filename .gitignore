@@ -142,3 +142,7 @@ dmypy.json
 *.tfstate.backup
 *.tfvars
 .terraform/
+
+# users
+pod/
+k8s/
