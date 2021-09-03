@@ -1,7 +1,0 @@
----
-- name: Configure Slack
-  hosts: all
-  become: true
-
-  roles:
-    - slackbot

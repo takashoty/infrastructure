@@ -1,7 +1,0 @@
----
-- name: Configure Docker
-  hosts: all
-  become: true
-
-  roles:
-    - docker-ce

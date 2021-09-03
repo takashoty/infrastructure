@@ -1,3 +1,0 @@
----
-# tasks file for ansible/roles/frontend
-- include: docker_frontend.yml

@@ -1,7 +1,0 @@
----
-- name: Configure JSON-filter
-  hosts: all
-  become: true
-
-  roles:
-    - json-filter

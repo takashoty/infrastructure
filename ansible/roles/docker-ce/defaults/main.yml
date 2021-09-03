@@ -1,4 +1,0 @@
----
-# defaults file for docker-ce
-docker_network: bridge_issue
-deploy_user: serve

@@ -1,7 +1,0 @@
----
-- name: Configure PotgreSQL
-  hosts: all
-  become: true
-
-  roles:
-    - db
