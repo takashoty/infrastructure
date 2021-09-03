@@ -62,6 +62,11 @@ variable "versioning" {
 //  description = ""
 //}
 
+variable "cluster_name" {
+  description = ""
+  default = "kv094-cluster"
+}
+
 variable "location" {
   description = "Location"
 }
