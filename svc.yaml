@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: project94-jenk
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2021-09-03T08:00:56Z"
+  labels:
+    app.kubernetes.io/component: jenkins-controller
+    app.kubernetes.io/instance: project94-jenk
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: jenkins
+    helm.sh/chart: jenkins-3.5.14
+  name: project94-jenk-jenkins
+  namespace: default
+  resourceVersion: "733788"
+  uid: 13fc22dd-9b20-4f35-924e-e0a070e431fc
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/component: jenkins-controller
+    app.kubernetes.io/instance: project94-jenk
+  sessionAffinity: None
+  type: LoadBalancer 
+status:
+  loadBalancer: {}
